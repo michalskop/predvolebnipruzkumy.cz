@@ -1,0 +1,4 @@
+predvolebnipruzkumy.cz
+======================
+
+Předvolební průzkumy
