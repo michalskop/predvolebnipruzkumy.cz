@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="d3.linechart.js"></script>
+<script src="./binomial.js"></script>
+
+<style>
+body {
+  font: 10px sans-serif;
+}
+
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+</style>
+  </head>
+  <body>
+    <div id="chart" style=""></div>
+<script type="text/javascript">
+    var json = (function () {
+        var json = null;
+        $.ajax({
+            'async': false,
+            'global': false,
+            'url': "./getdata.php",
+            'dataType': "json",
+            'success': function (data) {
+                json = data;
+            }
+        });
+        return json;
+    })();
+    
+    var linechart = [{
+      "data":json,
+      "intervals": "real",
+      "interpolation": "nevim",
+      "width": 900,
+      "height": 400
+    }];
+    
+    var w=900,h=400,
+        svg=d3.select("#chart")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h);
+    var lc = d3.linechart()
+                .data(function(d) {
+                  nothing = 0;
+                  return d.data;
+                })
+                .intervals(function(d) {return d.intervals;})
+                .interpolation(function(d) {return d.interpolation;})
+                .width(function(d) {return d.width;})
+                .height(function(d) {return d.height;}); 
+                
+    var item = svg.selectAll(".linechart")
+      .data(linechart)
+   .enter()
+    .append("svg:g")
+    .call(lc);
+</script>
+</body>
+</html>

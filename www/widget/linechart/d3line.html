@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="./binomial.js"></script>
+<script>
+
+var margin = {top: 20, right: 80, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+
+var color = d3.scale.category10();
+
+var x = d3.time.scale()
+    .range([0, width])
+    .domain([parseDate("2013-12-25"),parseDate("2014-03-5")]);
+var y = d3.scale.linear()
+    .range([height, 0])
+    .domain([0,0.45]);
+
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .ticks(d3.time.months)
+    .tickSize(16, 0)
+    //.tickFormat(d3.time.format("%B"));
+    .tickFormat(d3.time.format("%Y-%-m"));
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format(".0%"));
+
+
+var area = d3.svg.area()
+    .interpolate("cardinal")
+    .x(function(d) { return x(parseDate(d.x)) })
+    .y0(function(d) { return y(2*CalcBinL(d.y*d.n,d.n)-d.y) })  //2 times the stat.error
+    .y1(function(d) { return y(2*CalcBinU(d.y*d.n,d.n)-d.y) });  //2 times the stat.error
+
+var line = d3.svg.area()
+    .interpolate("cardinal")
+    .x(function(d) { return x(parseDate(d.x)) })
+    .y(function(d) { return y(d.y) })
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .selectAll(".tick text")
+    .style("text-anchor", "start")
+    .attr("x", 6)
+    .attr("y", 6);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Rate");
+      
+
+d3.json("d3line.json", function(error, data) {
+
+  // interval
+  svg.selectAll(".band")
+     .data(data)
+    .enter().append("path")
+     .attr("d",function(d) {return area(d.values)})
+     .attr("class","area")
+     .attr("id",function(d) {return d.name + "-band"})
+     .style("fill",function(d) {return d.properties.fill})
+     .style("fill-opacity",0.2)
+     .attr("title",function(d) {return d.name});
+  
+  // line   
+  svg.selectAll(".line")
+     .data(data)
+   .enter().append("path")
+     .attr("d",function(d) {return line(d.values)})
+     .attr("class","line")
+     .attr("id",function(d) {return d.name + "-line"})
+     .style("stroke",function(d) {return d.properties.fill})
+     .style("stroke-opacity",1)
+     .attr("title",function(d) {return d.name});
+  
+  // points
+  data.forEach(function(dat,i) {
+      svg.selectAll(".point")
+          .data(dat.values)
+        .enter().append("circle")
+          .attr("cx", function(d) {
+            nothing = 0;
+            return x(parseDate(d.x)) 
+          })
+          .attr("cy", function(d) {return y(d.y) })
+          .attr("r", 6)
+          .style("stroke",function(d) {return dat.properties.fill})
+          .style("stroke-width","3px")
+          .style("fill","none");
+          
+  });
+});
+
+</script>
