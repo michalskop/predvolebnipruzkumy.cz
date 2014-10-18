@@ -41,7 +41,7 @@ d3.linechart = function() {
         .ticks(d3.time.years)
         .tickSize(16, 0)
         //.tickFormat(d3.time.format("%B"));
-        .tickFormat(d3.time.format("%Y-%m"));
+        .tickFormat(d3.time.format("%Y"));
 
       var yAxis = d3.svg.axis()
         .scale(y)
@@ -107,10 +107,10 @@ d3.linechart = function() {
            nothing = 0;
            return area(d.values)
            })
-         .attr("class","area")
+         .attr("class","area band")
          .attr("id",function(d) {return d.name + "-band"})
          .style("fill",function(d) {return d.properties.fill})
-         .style("fill-opacity",0.2)
+         //.style("fill-opacity",0.2)
          .attr("title",function(d) {return d.name});              
       // line   
       g.selectAll(".line")

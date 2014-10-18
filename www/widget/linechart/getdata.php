@@ -1,6 +1,9 @@
 <?php
 
-$url = "http://localhost/michal/project/predvolebnipruzkumy.cz/api/v0.0/data/get.php?since=2010-01-01&topic_id=model-psp&pollster_id=cvvm";
+include("../../../www/settings.php");
+
+$url = 
+$api_path . "data/get.php?since=1900-01-01&topic_id=model-psp&pollster_id=cvvm";
 
 $raw = json_decode(file_get_contents($url));
 $colors = json_decode(file_get_contents("../../js/colors.json"));

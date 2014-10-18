@@ -23,6 +23,13 @@ body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+.band{
+  fill-opacity: 0.2
+}
+
+.band:hover {
+  fill-opacity: 0.7
+}
 </style>
   </head>
   <body>
@@ -47,10 +54,10 @@ body {
       "intervals": "real",
       "interpolation": "nevim",
       "width": 900,
-      "height": 400
+      "height": 350
     }];
     
-    var w=900,h=400,
+    var w=900,h=350,
         svg=d3.select("#chart")
             .append("svg")
             .attr("width",w)

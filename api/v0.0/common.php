@@ -1,7 +1,6 @@
 <?php
 
-
-$url_path = "http://localhost/michal/project/predvolebnipruzkumy.cz/api/v0.0/";
+include_once("../../../www/settings.php");
 
 /**
 * filter

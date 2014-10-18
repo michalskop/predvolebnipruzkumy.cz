@@ -34,7 +34,7 @@ $orows = select_fields($orows,$fields,$slug_fields);
     $until = trim($_GET['until']);
   else
     $until = '5000-01-01'; 
-$polls = getjson($url_path.'poll/get.php?since='.$since.'&until='.$until);
+$polls = getjson($api_path.'poll/get.php?since='.$since.'&until='.$until);
     //reorder
 $polls_ar = [];
 foreach($polls as $poll) {
@@ -55,7 +55,7 @@ foreach ($orows as $orow) {
 //topic filter - topic, question
 if (isset($_GET['topic_id'])) {
   $topic_id = trim($_GET['topic_id']);
-  $questions = getjson($url_path.'question/get.php?topic_id='.$topic_id);
+  $questions = getjson($api_path.'question/get.php?topic_id='.$topic_id);
   //reorder
   $questions_ar = [];
   foreach($questions as $question) {
