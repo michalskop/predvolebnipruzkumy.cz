@@ -12,7 +12,8 @@
         </div>
      
      <div class="text-center">
-      <iframe src="{$text['url']}widget/linechart/" width="960" height="402" frameborder="0" seamless="seamless"></iframe>
+      <iframe src="{$text['url']}widget/linechart/" width="960" height="369" frameborder="0" seamless="seamless"></iframe>
+      <div class="text-info" style="position:relative;bottom:30px;"><i class="fa fa-info-circle"></i> CVVM: volební model</div>
      </div>
      
      <div class="row">
