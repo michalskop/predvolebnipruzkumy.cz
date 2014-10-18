@@ -9,6 +9,7 @@ $text = [
   'title' => 'Předvolební průzkumy',
   
   'url' => "http://predvolebnipruzkumy.cz/",
+  //'url' => "http://localhost/michal/project/predvolebnipruzkumy.cz/www/",
   
   'development_heading' => 'Plánované funkce aplikace',
   

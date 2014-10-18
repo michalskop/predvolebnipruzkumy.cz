@@ -1,6 +1,6 @@
 <?php
 
-include("../../../www/settings.php");
+include("../../settings.php");
 
 $url = 
 $api_path . "data/get.php?since=1900-01-01&topic_id=model-psp&pollster_id=cvvm";

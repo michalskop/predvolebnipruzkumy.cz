@@ -1,6 +1,6 @@
 <?php
 
-include_once("../../../www/settings.php");
+include_once("../../../settings.php");
 
 /**
 * filter
