@@ -22,7 +22,7 @@ d3.linechart = function() {
         if (d['values'][0]['x'] < minmax['x']['min']) minmax['x']['min'] = d['values'][0]['x'];
       });
  
-      var margin = {top: 20, right: 80, bottom: 30, left: 50},
+      var margin = {top: 15, right: 50, bottom: 15, left: 50},
             width = widthvar - margin.left - margin.right,
             height = heightvar - margin.top - margin.bottom;
       
@@ -48,6 +48,11 @@ d3.linechart = function() {
         .orient("left")
         .tickFormat(d3.format(".0%")); 
       
+      var yAxis2 = d3.svg.axis()
+        .scale(y)
+        .orient("right")
+        .tickFormat(d3.format(".0%")); 
+      
       //areas and lines
       var area = d3.svg.area()
         .interpolate("cardinal")
@@ -56,13 +61,13 @@ d3.linechart = function() {
           if (!(intervals.indexOf(['statistical', 'real']))) {
             intervals = 'real';
           }
-          if (intervals == 'real') { coef = 2;}
+          if (intervals == 'real') { coef = 4;}
           else {coef = 1;}
           return y(coef*CalcBinL(d.y*d.n,d.n)-(coef-1)*d.y) })  //2 times the stat.error
         .y1(function(d) { 
           if (!(intervals.indexOf(['statistical', 'real'])))
             intervals = 'real';
-          if (intervals == 'real') coef = 2;
+          if (intervals == 'real') coef = 4;
           else coef = 1;
           return y(coef*CalcBinU(d.y*d.n,d.n)-(coef-1)*d.y) 
         });  //2 times the stat.error
@@ -99,6 +104,11 @@ d3.linechart = function() {
           .style("text-anchor", "end")
           .text("Rate");
           
+      g.append("g")
+          .attr("class", "y axis")
+          .attr("transform", "translate(" + (width+5) + ",0)")
+          .call(yAxis2);
+          
       // interval
       g.selectAll(".band")
          .data(data)
@@ -113,7 +123,7 @@ d3.linechart = function() {
          //.style("fill-opacity",0.2)
          .attr("title",function(d) {return d.name});              
       // line   
-      g.selectAll(".line")
+      /*g.selectAll(".line")
          .data(data)
        .enter().append("path")
          .attr("d",function(d) {return line(d.values)})
@@ -121,7 +131,7 @@ d3.linechart = function() {
          .attr("id",function(d) {return d.name + "-line"})
          .style("stroke",function(d) {return d.properties.fill})
          .style("stroke-opacity",1)
-         .attr("title",function(d) {return d.name});
+         .attr("title",function(d) {return d.name});*/
          
       // points
       data.forEach(function(dat,i) {
@@ -136,7 +146,8 @@ d3.linechart = function() {
               .attr("r", 3)
               .style("stroke",function(d) {return dat.properties.fill})
               .style("stroke-width","3px")
-              .style("fill","none");
+              .style("fill","none")
+              .attr("data-tooltip",function(d) {return d.tooltip});
       });
     });
   }

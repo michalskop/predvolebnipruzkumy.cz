@@ -5,6 +5,7 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="d3.linechart.js"></script>
+<script src="d3.tooltip.js"></script>
 <script src="./binomial.js"></script>
 
 <style>
@@ -30,17 +31,38 @@ body {
 .band:hover {
   fill-opacity: 0.7
 }
+
+.tooltip {
+	  	font-family: sans-serif;
+	  	font-size: 11px;
+	  	z-index: 50;
+	  	position: absolute;
+	  	border: 1px solid #888;
+	  	color: #fff;
+	  	border-radius: 4px;
+	  	background: rgba(0, 0, 0, 0.8);
+	  	padding: 12px;
+	  	margin-top: -8px;
+	  	margin-left: 0px;
+	  	box-shadow: #aaa 0px 0px 1px;
+	}
+
+	.tooltip p.only-child {
+  		margin: 0px;
+	}
 </style>
   </head>
   <body>
     <div id="chart" style=""></div>
 <script type="text/javascript">
+    new Tooltip().watchElements();
+    
     var json = (function () {
         var json = null;
         $.ajax({
             'async': false,
             'global': false,
-            'url': "./getdata.php",
+            'url': "./getdata.php" + window.location.search,
             'dataType': "json",
             'success': function (data) {
                 json = data;
@@ -48,16 +70,21 @@ body {
         });
         return json;
     })();
+
+    width = getParameterByName('width');
+    height = getParameterByName('height');
+    if ((width == '') || (!isNumeric(width)) || width < 10) width = 900;
+    if (height == '') height = 350;
     
     var linechart = [{
       "data":json,
       "intervals": "real",
       "interpolation": "nevim",
-      "width": 900,
-      "height": 350
+      "width": width,
+      "height": height
     }];
     
-    var w=900,h=350,
+    var w=width,h=height,
         svg=d3.select("#chart")
             .append("svg")
             .attr("width",w)
@@ -77,6 +104,18 @@ body {
    .enter()
     .append("svg:g")
     .call(lc);
+ 
+   
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
 </script>
 </body>
 </html>

@@ -4,8 +4,9 @@
 */
 $text = [
   'lang' => 'cs',
+  'locale' => 'cs_CZ.utf8',
 
-  'name' => 'Předvolební průzkumy .cz <i><small>právě se vývíjí</small></i>',
+  'name' => 'Předvolební průzkumy .cz <i><small>právě se vyvíjí</small></i>',
   'title' => 'Předvolební průzkumy',
   
   'url' => "http://predvolebnipruzkumy.cz/",

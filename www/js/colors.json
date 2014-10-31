@@ -9,5 +9,10 @@
   "ods": "blue",
   "kscm": "red",
   "kdu-csl": "yellow",
-  "vv": "#0ff"
+  "vv": "#0ff",
+  "rozhodne-ano": "#080",
+  "spise-ano": "#8b8",
+  "nevi": "gray",
+  "spise-ne": "#f88",
+  "rozhodne-ne": "#f00"
 }
