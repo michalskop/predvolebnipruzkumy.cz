@@ -12,12 +12,20 @@ function filter($rows,$filter_fields,$fields) {
   
   foreach ($filter_fields as $ff) {
     if (isset($_GET[$ff]))
-      $filter[$ff] = slugify(trim($_GET[$ff]));
+      if (is_array($_GET[$ff]))
+      {
+        foreach ($_GET[$ff] as $fitem) {
+          $ffbits[] = slugify(trim($fitem));
+        }
+        $filter[$ff] = $ffbits; 
+      } else {
+        $filter[$ff] = array(slugify(trim($_GET[$ff])));
+      }
   }
   foreach($rows as $row) {
     $pass = true;
     foreach($filter as $fkey => $f) {
-      if (!(slugify($row->$fields[$fkey]->$t) == $f))
+      if (!(in_array(slugify($row->$fields[$fkey]->$t),$f)))
         $pass = false;
     }
     if ($pass)

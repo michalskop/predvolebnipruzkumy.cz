@@ -12,22 +12,21 @@
         </div>
      
      <div class="text-center">
-       <div class="row">
-         <div class="col-sm-6">
-           <iframe src="{$text['url']}widget/linechart/?since=2013-11-01&width=400&height=150" width="430" height="170" frameborder="0" seamless="seamless" class="noScrolling" scrolling="no"></iframe>
-          
-           <div class="text-info"><i class="fa fa-info-circle"></i> CVVM: volební model, od posledních voleb 2013</div><div class=""><span class="text-info"><i class="fa fa-external-link"></i> Link: </span><input type="text" disable="disable" value="{$text['url']}widget/linechart/?since=2013-11-01&width=400&height=150" size="35"/>
-           </div>
-         </div>
-         <div class="col-sm-6">
-           <iframe src="{$text['url']}widget/linechart/?since=&width=400&height=150&topic_id=ucast-psp" width="430" height="170" frameborder="0" seamless="seamless" class="noScrolling" scrolling="no"></iframe>
-           <div class="text-info"><i class="fa fa-info-circle"></i> CVVM: deklarovaná účast ve volbách </div><div class=""><span class="text-info"><i class="fa fa-external-link"></i> Link: </span><input type="text" disable="disable" value="{$text['url']}widget/linechart/?since=&width=400&height=150&topic_id=ucast-psp" size="35"/>
-         </div>
-       </div>
-     </div>
-     <div class="text-center">
+       {$widgets=[['restofurl'=>'widget/linechart/?since=2013-11-01&width=400&height=150','description'=>'CVVM: <strong>volební model</strong>, od posledních voleb 2013'],['restofurl'=>'widget/linechart/?since=2013-11-01&width=400&height=150&pollster_id=median','description'=>'Median: <strong>volební model</strong>, od posledních voleb 2013'],['restofurl'=>'widget/linechart/?since=&width=400&height=150&topic_id=ucast-psp','description'=>'CVVM: deklarovaná <strong>účast</strong> ve volbách'],['restofurl'=>'widget/linechart/?since=2013-11-01&&width=400&height=150&topic_id=preference-psp','description'=>'CVVM: <strong>volební preference</strong>, od posledních voleb']]}
+       {foreach $widgets as $widget}
+       {if ($widget@iteration is not div by 2)}<div class="row">{/if}
+         {include "frontpage-widget.tpl"}
+       {if ($widget@iteration is div by 2)}</div> <!-- /row -->{/if}
+       {/foreach}
+       
+     </div> <!-- /text-center -->
+         
+     <div class="text-center well well-sm">
+       <h4 class="text-info">CVVM: <strong>volební model</strong> od roku 2002</h4>
       <iframe src="{$text['url']}widget/linechart/" width="960" height="369" frameborder="0" seamless="seamless"></iframe>
-      <div class="row"><div class="text-info col-sm-6"><i class="fa fa-info-circle"></i> CVVM: volební model </div><div class="col-sm-6"><span class="text-info"><i class="fa fa-external-link"></i> Link: </span><input type="text" disable="disable" value="{$text['url']}widget/linechart/" size="35"/></div>
+      <div class="row">
+        <span class="text-info"><i class="fa fa-external-link"></i> Link: </span><input type="text" disable="disable" value="{$text['url']}widget/linechart/" size="45"/>
+      </div>
       
      </div>
      

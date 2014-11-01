@@ -7,12 +7,21 @@ include("../../text.php");
 setlocale(LC_ALL, $text['locale']);
 
 //read params:
-$readparams = ['since','until','topic_id','pollster_id'];
+$readparams = ['since','until','topic_id','pollster_id','choice_id'];
 $defaults = ['since' => '1900-01-01', 'topic_id' => 'model-psp', 'pollster_id' => 'cvvm'];
 $params = [];
 foreach ($readparams as $rp)
-if (isset($_GET[$rp]))
-  $params[$rp] = sanitize($_GET[$rp]);
+if (isset($_GET[$rp])) {
+  if (is_array($_GET[$rp])) {
+    $p = [];
+    foreach ($_GET[$rp] as $item) {
+      $p[] = sanitize($item);
+    }
+    $params[$rp] = $p;
+  } else {
+    $params[$rp] = sanitize($_GET[$rp]);
+  }
+}
 else {
   if (isset($defaults[$rp]))
     $params[$rp] = $defaults[$rp];
