@@ -26,5 +26,6 @@
 {include "header.tpl"} 
 {block name=body}{/block}
 {include "footer.tpl"}
+{include "google_analytics.tpl"}
   </body>
 </html>

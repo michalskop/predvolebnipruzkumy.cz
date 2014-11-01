@@ -28,6 +28,8 @@ $text = [
   
   'footer_text' => '<p>Vytváří <a href="http://kohovolit.eu">KohoVolit.eu</a> - Michal Škop <code>@skopmichal</code></p>',
   'github' => '<a href="https://github.com/michalskop/predvolebnipruzkumy.cz/">Zdrojový kód</a>',
-  'issues' => '<a href="https://github.com/michalskop/predvolebnipruzkumy.cz/issues/">Návrhy a bugy</a>'
+  'issues' => '<a href="https://github.com/michalskop/predvolebnipruzkumy.cz/issues/">Návrhy a bugy</a>',
+  
+  'ga_tracking_code' => 'UA-8592359-15',
 ];
 ?>
