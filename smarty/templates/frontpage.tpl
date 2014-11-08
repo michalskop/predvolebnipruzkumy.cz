@@ -40,7 +40,7 @@
 
       <div class="col-md-4">
           <h4>Widgety</h4>
-          <p><i class="fa fa-code"></i> <span class="text-info">Snadné interaktivní vkládání grafů na jiné stránky (ve vývoji)</span></p>
+          <p><i class="fa fa-code"></i> <span class="text-info">Snadné interaktivní <a href="/docs/widget/">vkládání grafů na jiné stránky</a> (ve vývoji)</span></p>
           <p><i class="fa fa-bar-chart-o"></i> <span class="text-info">Grafy předvolebních preferencí, modelů, apod. (ve vývoji)</span></p>
           <p><i class="fa fa-long-arrow-right"></i> <span class="text-warning">Sparklines (plánované)</span></p>
           <p><i class="fa  fa-sort-numeric-desc"></i> <span class="text-warning">Ukazatele aktuálního pohybu (plánované)</span></p>
@@ -59,8 +59,7 @@
       <div class="col-md-4">
         <h4>Další dobroty</h4>
         <p><i class="fa fa-clock-o"></i> <span class="text-success">Pravidelná aktualizace dat</span></p>
-        <p><i class="fa fa-cog"></i> <span class="text-success">API</span></p>
-        <p><i class="fa fa-book"></i> <span class="text-warning">dokumentace k API (plánované)</span></p>
+        <p><i class="fa fa-cog"></i> <span class="text-success"><a href="https://github.com/michalskop/predvolebnipruzkumy.cz/wiki">API s dokumentací</a></span></p>
         <p><i class="fa fa-bell-o"></i> <span class="text-warning">Alerty (Twitter, email) (plánované)</span></p>
         <p><i class="fa fa-download"></i> <span class="text-warning">Download dat v tabulce (plánované)</span></p>
       </div>
@@ -71,12 +70,6 @@
      
      </div> <!-- section -->
      
-     <div class="row">
-       <div class="bs-component">
-        <div class="alert alert-info"><strong>Aplikace se právě vyvíjí</strong>. Potřebujume vaše návrhy, připomínky, zpětnou vazbu.<br/>
-        Které části byste třeba chtěli mít co nejdříve?
-        </div>
-     </div>
      
      
     </div> <!-- /container -->

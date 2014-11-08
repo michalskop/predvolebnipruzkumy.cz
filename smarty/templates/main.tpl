@@ -7,7 +7,7 @@
     <meta name="description" content="{$text['description']}">
     <meta name="keywords" content="{$text['keywords']}">
     <meta name="author" content="{$text['author']}">
-    <link type="image/x-icon" href="image/favicon.ico" rel="shortcut icon">
+    <link type="image/x-icon" href="/image/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cerulean/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     

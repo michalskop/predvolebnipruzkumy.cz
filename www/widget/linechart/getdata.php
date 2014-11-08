@@ -28,14 +28,14 @@ else {
 }
 
 $url = 
-$api_path . "data/get.php?" . http_build_query($params);
+$api_path . "data/?" . http_build_query($params);
 $raw = json_decode(file_get_contents($url));
 usort($raw, "cmp");
 $colors = json_decode(file_get_contents("../../js/colors.json"));
 
 
 //choices
-$url = $api_path . "choice/get.php";
+$url = $api_path . "choices/";
 $choices = json_decode(file_get_contents($url));
     //reorder choices ofr easy access
 $choices_re = [];
