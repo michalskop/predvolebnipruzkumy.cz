@@ -2,3 +2,4 @@ dev/*
 smarty/templates_c/*
 www/settings.php
 www/api/v0.0/cache/*
+www/api/v0.1/cache/*
