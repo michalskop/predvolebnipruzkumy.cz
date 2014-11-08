@@ -27,11 +27,11 @@ $orows = select_fields($orows,$fields,$slug_fields);
 
 
 //time filter - poll
-  if (isset($_GET['since']))
+  if (isset($_GET['since']) and (trim($_GET['since']) != ''))
     $since = trim($_GET['since']);
   else
     $since = '1000-01-01';
-  if (isset($_GET['until']))
+  if (isset($_GET['until']) and (trim($_GET['until']) != ''))
     $until = trim($_GET['until']);
   else
     $until = '5000-01-01'; 
