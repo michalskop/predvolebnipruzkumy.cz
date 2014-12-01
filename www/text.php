@@ -22,7 +22,7 @@ $text = [
   'og_site_name' => 'Volební průzkumy .cz',
   
   'url' => "http://volebnipruzkumy.cz/",
-  'url' => "http://localhost/michal/project/predvolebnipruzkumy.cz/www/",
+  //'url' => "http://localhost/michal/project/predvolebnipruzkumy.cz/www/",
   
   'development_heading' => 'Plánované funkce aplikace',
   
