@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h1 id="type">Předvolební průzkumy</h1>
+                    <h1 id="type">Volební průzkumy</h1>
                 </div>
             </div>
         </div>
      
      <div class="text-center">
-       {$widgets=[['restofurl'=>'widget/linechart/?since=2013-11-01&width=400&height=150','description'=>'CVVM: <strong>volební model</strong>, od posledních voleb 2013'],['restofurl'=>'widget/linechart/?since=2013-11-01&width=400&height=150&pollster_id=median','description'=>'Median: <strong>volební model</strong>, od posledních voleb 2013'],['restofurl'=>'widget/linechart/?since=&width=400&height=150&topic_id=ucast-psp','description'=>'CVVM: deklarovaná <strong>účast</strong> ve volbách'],['restofurl'=>'widget/linechart/?since=2013-11-01&&width=400&height=150&topic_id=preference-psp','description'=>'CVVM: <strong>volební preference</strong>, od posledních voleb']]}
+
        {foreach $widgets as $widget}
        {if ($widget@iteration is not div by 2)}<div class="row">{/if}
          {include "frontpage-widget.tpl"}
@@ -33,7 +33,7 @@
      <div class="row">
        <div class="col-md-4">
          <div class="bs-component">
-          <h2>Připravované funkce aplikace</h2>
+          <h2>Popis:</h2>
         </div>
       </div>
       

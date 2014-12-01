@@ -7,6 +7,7 @@
 <script src="d3.linechart.js"></script>
 <script src="d3.tooltip.js"></script>
 <script src="./binomial.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
 
 <style>
 body {
@@ -14,10 +15,10 @@ body {
 }
 
 
-.axis text {
+/*.axis text {
   font: 10px sans-serif;
   fill: #666;
-}
+}*/
 
 .axis path,
 .axis line {
@@ -25,7 +26,8 @@ body {
   stroke: #ccc;
   shape-rendering: crispEdges;
 }
-.band{
+
+.band {
   fill-opacity: 0.2
 }
 
@@ -105,6 +107,14 @@ body {
    .enter()
     .append("svg:g")
     .call(lc);
+
+    $('.axis path').attr('stroke','#ccc').attr('fill','none').attr('shape-rendering','crispEdges');
+    $('.axis line').attr('stroke','#ccc').attr('fill','none').attr('shape-rendering','crispEdges');
+    $('.axis text').attr('font-size','10px').attr('fill','#666').attr('shape-rendering','crispEdges');
+ 
+    postdata = {'url':CryptoJS.MD5(window.location.href).toString(), 'svg':$('#chart').html().replace(/<strong>/g,'').replace(/<\/strong>/g,'').replace(/<br>/g,'')};
+    $.post('create_png.php',postdata);
+    nothing = 0;
  
    
 function getParameterByName(name) {

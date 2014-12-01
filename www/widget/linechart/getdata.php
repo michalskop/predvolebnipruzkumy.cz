@@ -55,7 +55,7 @@ foreach ($raw as $row) {
     $ch = $choice->abbreviation;
   else
     $ch = $choice->name;
-  $tooltip = "<strong>" . $ch . "</strong><br/>" . round($row->value*1000)/10 . " %<br/>" . strftime("%x",strtotime($row->end_date));
+  $tooltip = "<strong>" . $ch . "</strong><br>" . round($row->value*1000)/10 . " %<br>" . strftime("%x",strtotime($row->end_date));
   if (!(isset($out_ar[$name]['values'])))
     $out_ar[$name]['values'] = [];
   $out_ar[$name]['values'][] = ["x"=> $row->end_date, "y" =>$row->value, "n" => intval($row->n), "tooltip" => $tooltip];

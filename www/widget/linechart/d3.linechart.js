@@ -120,7 +120,7 @@ d3.linechart = function() {
          .attr("class","area band")
          .attr("id",function(d) {return d.name + "-band"})
          .style("fill",function(d) {return d.properties.fill})
-         //.style("fill-opacity",0.2)
+         .style("fill-opacity",0.2)
          .attr("title",function(d) {return d.name});              
       // line   
       /*g.selectAll(".line")
