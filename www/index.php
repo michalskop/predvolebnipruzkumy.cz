@@ -16,8 +16,8 @@ $widgets=[
 ];
 foreach ($widgets as $k => $widget) {
   $widgets[$k]['url'] = $text['url'] . $widget['charturl'] . $widget['parameters'];
-  $widgets[$k]['svgurl'] = $text['url'] . $widget['charturl'] . 'cache/svg/' . md5($widgets[$k]['url']);
-  $widgets[$k]['pngurl'] = $text['url'] . $widget['charturl'] . 'cache/png/' . md5($widgets[$k]['url']);
+  $widgets[$k]['svgurl'] = $text['url'] . $widget['charturl'] . 'cache/svg/' . md5($widgets[$k]['url']) . '.svg';
+  $widgets[$k]['pngurl'] = $text['url'] . $widget['charturl'] . 'cache/png/' . md5($widgets[$k]['url']) . '.png';
 }
 
 
