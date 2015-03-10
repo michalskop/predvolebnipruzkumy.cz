@@ -6,7 +6,8 @@ d3.linechart = function() {
           intervals = (typeof(intervals) === "function" ? intervals(d) : d.intervals),
           interpolation = (typeof(interpolation) === "function" ? interpolation(d) : d.interpolation),
           widthvar =  (typeof(width) === "function" ? width(d) : d.width),
-          heightvar =  (typeof(height) === "function" ? height(d) : d.height);
+          heightvar =  (typeof(height) === "function" ? height(d) : d.height),
+          limitvar =  (typeof(limit) === "function" ? limit(d) : d.limit);
           
       var parseDate = d3.time.format("%Y-%m-%d").parse;
       
@@ -58,7 +59,7 @@ d3.linechart = function() {
         .interpolate("cardinal")
         .x(function(d) { return x(parseDate(d.x)) })
         .y0(function(d) { 
-          if (!(intervals.indexOf(['statistical', 'real']))) {
+          if (!(intervals.indexOf(['statistical', 'real', 'none']))) {
             intervals = 'real';
           }
           if (intervals == 'real') { coef = 4;}
@@ -110,20 +111,23 @@ d3.linechart = function() {
           .call(yAxis2);
           
       // interval
-      g.selectAll(".band")
-         .data(data)
-        .enter().append("path")
-         .attr("d",function(d) {
-           nothing = 0;
-           return area(d.values)
-           })
-         .attr("class","area band")
-         .attr("id",function(d) {return d.name + "-band"})
-         .style("fill",function(d) {return d.properties.fill})
-         .style("fill-opacity",0.2)
-         .attr("title",function(d) {return d.name});              
-      // line   
-      /*g.selectAll(".line")
+      if (intervals != 'none') {
+          g.selectAll(".band")
+             .data(data)
+            .enter().append("path")
+             .attr("d",function(d) {
+               nothing = 0;
+               return area(d.values)
+               })
+             .attr("class","area band")
+             .attr("id",function(d) {return d.name + "-band"})
+             .style("fill",function(d) {return d.properties.fill})
+             //.style("fill-opacity",0.1)
+             .attr("title",function(d) {return d.name}); 
+      }
+                      
+      // central line   
+      g.selectAll(".line")
          .data(data)
        .enter().append("path")
          .attr("d",function(d) {return line(d.values)})
@@ -131,7 +135,7 @@ d3.linechart = function() {
          .attr("id",function(d) {return d.name + "-line"})
          .style("stroke",function(d) {return d.properties.fill})
          .style("stroke-opacity",1)
-         .attr("title",function(d) {return d.name});*/
+         .attr("title",function(d) {return d.name});
          
       // points
       data.forEach(function(dat,i) {
@@ -149,6 +153,19 @@ d3.linechart = function() {
               .style("fill","none")
               .attr("data-tooltip",function(d) {return d.tooltip});
       });
+      // limit line  
+      if (limitvar > 0) {
+          g.append("line")
+            .attr("x1", x(parseDate(minmax['x']['min'])))
+            .attr("y1", function() { return y(limitvar) })
+            .attr("x2", x(parseDate(minmax['x']['max'])))
+            .attr("y2", function() { return y(limitvar) })
+            .attr("class","limit-line")
+            .style("stroke","red")
+            .style("stroke-opacity",1)
+            .style("stroke-width",2)
+             //.attr("title",function(d) {return d.name});
+      }
     });
   }
   
@@ -179,6 +196,12 @@ d3.linechart = function() {
     height = value;
     return linechart;
   };
+  linechart.limit = function(value) {
+    if (!arguments.length) return value;
+    limit = value;
+    return linechart;
+  };  
+  
   
   return linechart;
 }
